@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="tg">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Технологияи иттилоотӣ – Саволу ҷавоб</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0;font-family:Arial, sans-serif}
+    body{background:#0f172a;color:#e5e7eb}
+    header{background:#020617;padding:20px;text-align:center}
+    header h1{color:#38bdf8;margin-bottom:10px}
+    .container{max-width:1100px;margin:auto;padding:30px}
+    .search{margin-bottom:20px}
+    .search input{width:100%;padding:12px;border-radius:10px;border:none;font-size:16px}
+    .card{background:#020617;border-radius:16px;padding:20px;margin-bottom:15px;box-shadow:0 10px 25px rgba(0,0,0,.4)}
+    .card h3{color:#38bdf8;margin-bottom:10px}
+    .answer{display:none;color:#cbd5f5;margin-top:10px}
+    button{margin-top:10px;padding:8px 16px;border:none;border-radius:8px;background:#38bdf8;color:#020617;font-weight:bold;cursor:pointer}
+    footer{text-align:center;padding:20px;color:#94a3b8;margin-top:40px}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Саволҳои фанни Технологияи иттилоотӣ</h1>
+    <p>Барои хонандагон ва донишҷӯён</p>
+  </header>
+
+  <div class="container">
+    <div class="search">
+      <input type="text" id="search" placeholder="Ҷустуҷӯи савол..." onkeyup="searchQuestions()" />
+    </div>
+
+    <div id="questions"></div>
+  </div>
+
+  <footer>
+    Омӯзгори фанни Технологияи иттилоотӣ<br>
+    <strong>Шарифов Иқбол Мирзомуродович</strong><br>
+    © 2026
+  </footer>
+
+  <script>
+    const data = [
+      {q:"Технологияи иттилоотӣ чист?", a:"Технологияи иттилоотӣ маҷмӯи усулҳо ва воситаҳо барои коркарди иттилоот мебошад."},
+      {q:"Иттилоот чист?", a:"Иттилоот маълумоте мебошад, ки инсон онро қабул ва истифода мебарад."},
+      {q:"Компютер чист?", a:"Компютер дастгоҳи электроние мебошад барои қабул, коркард ва нигоҳдории иттилоот."},
+      {q:"Қисмҳои асосии компютер кадомҳоянд?", a:"Процессор, хотира, монитор, клавиатура, муш."},
+      {q:"Процессор чӣ вазифа дорад?", a:"Процессор ҳамаи ҳисобу китоб ва идоракунии компютерро иҷро мекунад."},
+      {q:"Хотираи RAM чист?", a:"Хотираи муваққатӣ барои иҷрои барномаҳо."},
+      {q:"Диск чист?", a:"Воситаи нигоҳдории доимии маълумот."},
+      {q:"Бит чист?", a:"Хурдтарин воҳиди ченаки иттилоот."},
+      {q:"Байт чанд бит аст?", a:"1 байт = 8 бит."},
+      {q:"Системаи оператсионӣ чист?", a:"Барномае, ки кори компютерро идора мекунад."}
+    ];
+
+    const container = document.getElementById('questions');
+
+    function render(list){
+      container.innerHTML = "";
+      list.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'card';
+        div.innerHTML = `<h3>${item.q}</h3><button onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display==='block'?'none':'block'">Намоиши ҷавоб</button><div class='answer'>${item.a}</div>`;
+        container.appendChild(div);
+      });
+    }
+
+    function searchQuestions(){
+      const val = document.getElementById('search').value.toLowerCase();
+      const filtered = data.filter(i => i.q.toLowerCase().includes(val));
+      render(filtered);
+    }
+
+    render(data);
+  </script>
+</body>
+</html>
